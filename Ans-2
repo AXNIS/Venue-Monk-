@@ -1,0 +1,40 @@
+#include <bits/stdc++.h> 
+#define ll          long long
+#define pb          push_back
+#define pp          pop_back
+#define vll         vector<long long>
+#define mll         unordered_map<ll,ll>
+#define test        ll T;cin>>T;while(T--)
+#define forn(i,n)   for(int i = 0; i<int(n); i++)
+#define tezi        ios_base::sync_with_stdio();cin.tie(0);cout.tie(0);
+#define pdes        priority_queue<ll>
+#define pas         priority_queue<ll, vector<ll>, greater<ll> > 
+using namespace std;
+ll helper( ll arr[], ll m, ll n ) 
+{ 
+    ll t[n+1];  
+    memset(t, 0, sizeof(t)); 
+    t[0] = 1; 
+    
+    for(int i=0; i<m; i++) 
+        for(int j=arr[i]; j<=n; j++) 
+            t[j] += t[j-arr[i]]; 
+
+    return t[n]; 
+} 
+int main()
+{
+    tezi
+        test
+    {
+        ll m; cin>>m; // type of currencies 
+        ll arr[m];
+        forn(i,m)
+        {
+            cin>>arr[i];
+        }
+        ll n; cin>>n; // total amount to be make
+        cout<<helper(arr,m,n)<<endl;
+    }
+    return 0;
+}
