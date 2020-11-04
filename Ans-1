@@ -77,3 +77,12 @@ int main()
     }
     return 0;
 }
+/*
+Input 
+1
+1901 01 01
+2000 12 31
+
+Output
+171
+*/
