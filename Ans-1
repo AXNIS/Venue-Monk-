@@ -1,0 +1,79 @@
+#include <bits/stdc++.h> 
+#define ll          long long
+#define pb          push_back
+#define pp          pop_back
+#define vll         vector<long long>
+#define mll         unordered_map<ll,ll>
+#define test        ll T;cin>>T;while(T--)
+#define forn(i,n)   for(int i = 0; i<int(n); i++)
+#define tezi        ios_base::sync_with_stdio();cin.tie(0);cout.tie(0);
+#define pdes        priority_queue<ll>
+#define pas         priority_queue<ll, vector<ll>, greater<ll> > 
+using namespace std;
+const ll sun = 1; 
+ll helper(ll year, ll mon, ll day)
+{
+    if (mon <= 2)
+    {
+        mon += 12;
+        year--;
+    }
+    return (day +
+            13 * (mon + 1) / 5 +
+            year + year / 4 - year / 100 + year / 400)
+        % 7;
+}
+
+int main()
+{
+ ll tests;
+    std::cin >> tests;
+    while (tests--)
+    {
+        ll year1, year2;
+     ll mon1, mon2, day1, day2;
+        std::cin >> year1 >> mon1 >> day1;
+        std::cin >> year2 >> mon2 >> day2; 
+        if (year2 < year1 || (year2 == year1 && mon2 < mon1))
+        {
+            std::swap(year1,  year2);
+            std::swap(mon1, mon2);
+        }
+        ll currYear  = year1;
+     ll       currmon = mon1;
+        if (day1 > 1)
+        {
+            currmon++;
+            if (currmon > 12)
+            {
+                currmon -= 12;
+                currYear++;
+            }
+        }
+     ll sum = 0;
+        while (currYear + 2800 < year2)
+        {
+            currYear += 2800;
+            sum += 4816;         
+        }
+        while (currmon < mon2 || currYear < year2) 
+        {
+
+            if (helper(currYear, currmon, 1) == sun)
+                sum++;
+
+            currmon++;
+            if (currmon > 12)
+            {
+                currmon -= 12;
+                currYear++;
+            }
+        }
+
+        if (helper(currYear, currmon, 1) == sun)
+            sum++;
+
+        std::cout << sum << std::endl;
+    }
+    return 0;
+}
